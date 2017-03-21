@@ -9,6 +9,9 @@ p, a{
 }
 
 body {
+    border: 0;
+    padding: 0;
+    margin: 0;
 	background: #222222;
 	color: #c5402f;
 }
