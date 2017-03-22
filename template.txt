@@ -10,11 +10,11 @@
 			<div id = "main">
 				<header>
 					<a href="signin.html">
-						<img src="images/logo.png" alt="Logo" width="97" height="70">
+						<img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70">
 					</a>
 
 					<a href="account_settings.html">
-						<img src="images/settings.png" alt="Settings" width="70" height="70" align="right">
+						<img class="icon" src="images/settings.png" alt="Settings" width="70" height="70" align="right">
 					</a>
 				</header>
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
