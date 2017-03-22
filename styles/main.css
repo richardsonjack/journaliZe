@@ -14,6 +14,7 @@ body {
     margin: 0;
 	background: #222222;
 	color: #c5402f;
+    font-size: 1.2em;
 }
 
 header,footer{
@@ -36,7 +37,12 @@ footer{
     left:0;
     width:250px;
     background-color: #ffffff;
+    border-radius: 25px;
+}
 
+h2#signin_header{
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
 }
 
 
