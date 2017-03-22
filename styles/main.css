@@ -27,7 +27,7 @@ footer{
     bottom:0;
 }
 
-#login_box{
+#form_box{
     padding-bottom: 30px;
     margin: 0 auto;
     position: relative;
@@ -40,7 +40,7 @@ footer{
     border-radius: 25px;
 }
 
-h2#signin_header{
+h2#form_header{
 	border-top-left-radius: 25px;
 	border-top-right-radius: 25px;
 }
