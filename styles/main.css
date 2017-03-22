@@ -27,6 +27,23 @@ footer{
     bottom:0;
 }
 
+.button{
+    background-color: #c5402f; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.button:hover{
+    background-color: #b32e0d; /* Green */
+    color: white;
+}
+
 #form_box{
     padding-bottom: 30px;
     margin: 0 auto;
