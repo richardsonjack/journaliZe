@@ -10,14 +10,14 @@
 			<div id = "main">
 				<header>
 					<a href="signin.html">
-						<img src="images/logo.png" alt="Logo" width="97" height="70">
+						<img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70">
 					</a>
 
-					<a href="">
-						<img src="images/settings.png" alt="Settings" width="70" height="70" align="right">
+					<a href="account_settings.html">
+						<img class="icon" src="images/settings.png" alt="Settings" width="70" height="70" align="right">
 					</a>
 				</header>
-				<span style="font-size:30px; cursor:pointer" onclick="openNav()"> &#9776; </span>
+				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
 			</div>
 
 			<div id="mySidenav" class="sidenav">

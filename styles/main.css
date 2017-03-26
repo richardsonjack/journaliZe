@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Condensed');
+
+h1,h2,h3,h4,h5,h6{
+	font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+p, a{
+	font-family: 'Open Sans', sans-serif;
+}
+
 body {
+    border: 0;
+    padding: 0;
+    margin: 0;
 	background: #222222;
 	color: #c5402f;
+    font-size: 1.2em;
 }
 
 header,footer{
@@ -13,7 +27,24 @@ footer{
     bottom:0;
 }
 
-#login_box{
+.button{
+    background-color: #c5402f; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.button:hover{
+    background-color: #b32e0d; /* Green */
+    color: white;
+}
+
+#form_box{
     padding-bottom: 30px;
     margin: 0 auto;
     position: relative;
@@ -23,7 +54,12 @@ footer{
     left:0;
     width:250px;
     background-color: #ffffff;
+    border-radius: 25px;
+}
 
+h2#form_header{
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
 }
 
 
