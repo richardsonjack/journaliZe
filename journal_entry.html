@@ -4,50 +4,44 @@
 			<meta charset="UTF-8">
 			<title>JournaliZe</title>
 			<link href="styles/main.css" rel="stylesheet" type="text/css" />
+			<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+  			<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+			//<![CDATA[
+        	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+  			//]]>
+  			</script>
 		</head>
 
 		<body>
 			<div id = "main">
 				<header>
-					<a href="signin.html">
-						<img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70">
-					</a>
+					<a href="signin.html"><img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
 
-					<a href="account_settings.html">
-						<img class="icon" src="images/settings.png" alt="Settings" width="70" height="70" align="right">
-					</a>
+					
+					<a href="account_settings.html"><img class="icon" id = "settings" src="images/settings.png" alt="Settings" width="70" height="70"></a>
+					
 				</header>
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
 			</div>
 
 			<div id="journal_entry_box">
-				<!-- Buttons-->
 
-			    <input type="button" value="B" onclick="mod_selection('[b]','[/b]')" />
+				<h2>New Entry</h2>
 
-			    <input type="button" value="I" onclick="mod_selection('[i]','[/i]')" />
+				<form>
+					Title: 
+					<input type="text" name="title">&nbsp&nbsp&nbsp&nbsp
+					Date:
+					<input type="date" name="date"></br></br>
+				</form>
 
-			    <input type="button" value="U" onclick="mod_selection('[u]','[/u]')" />
+				<!--texteditor--> 
+				<div id="text_editor">
+					<textarea name="text_editor" cols="40">
+					</textarea><br />
+				</div>
 
-			    <br />
-
-			    <!-- Text area -->
-
-			    <textarea class="text_edit" id="my_text"></textarea>
-
-			    <br />
-
-			    <!-- Submit button -->
-
-			    <input type="button" value="Show text" onclick="view_text()" />
-
-			    <!-- Empty div to put the text in -->
-			    <div id="view_text">
-
-		    	</div>
-		    	<script src="js/textEditor.js"></script>
 			</div>
-
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  				<a href="index.html">Home</a>
@@ -56,10 +50,6 @@
 			</div>
 
 			<script src="js/sidenav.js"></script>
-
-
-
-
 
 			<footer>
 				<nav>
@@ -71,7 +61,5 @@
 					
 				</nav>
 			</footer>
-			
-			<!-- This is a comment. Not visible. --> 
 		</body>
 	</html>

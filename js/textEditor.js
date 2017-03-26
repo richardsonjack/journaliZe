@@ -1,96 +1,77 @@
-function view_text () {
-            // Find html elements.
-            var textArea = document.getElementById('my_text');
-            var div = document.getElementById('view_text');
+$(document).ready(function(){
+    document.getElementById('textEditor').contentWindow.document.designMode="on";
+    document.getElementById('textEditor').contentWindow.document.close();
+    var edit = document.getElementById("textEditor").contentWindow;
+    edit.focus();
+    $("#bold").click(function(){
+    if($(this).hasClass("selected")){
+        $(this).removeClass("selected");
+    }else{
+        $(this).addClass("selected");
+    }
+    boldIt();
+ });
+    $("#italic").click(function(){
+    if($(this).hasClass("selected")){
+        $(this).removeClass("selected");
+    }
+    else{
+        $(this).addClass("selected");
+    }
+    ItalicIt();
+});
+ 
+$("#fonts").on('change',function(){
+    changeFont($("#fonts").val());
+});
+ 
+$("#link").click(function(){
+    var urlp=prompt("What is the link:","http://");
+    url(urlp);
+}); 
+ 
+$("#stext").click(function(){
+    $("#text").hide();
+    $("#textEditor").show();
+    $("#controls").show()
+});
+ 
+$("#shtml").on('click',function(){
+    $("#text").css("display","block");
+    $("#textEditor").hide();
+    $("#controls").hide();
+});
 
-            // Put the text in a variable so we can manipulate it.
+});
 
-            var text = textArea.value;
-
-             
-
-            // Make sure html and php tags are unusable by disabling < and >.
-
-            text = text.replace(/\</gi, "<");
-
-            text = text.replace(/\>/gi, ">");
-
-            // Exchange newlines for <br />
-
-            text = text.replace(/\n/gi, "<br />");
-
-            // Basic BBCodes.
-
-            text = text.replace(/\[b\]/gi, "<b>");
-
-            text = text.replace(/\[\/b\]/gi, "</b>");
-
-            text = text.replace(/\[i\]/gi, "<i>");
-
-            text = text.replace(/\[\/i\]/gi, "</i>");
-
-            text = text.replace(/\[u\]/gi, "<u>");
-
-            text = text.replace(/\[\/u\]/gi, "</u>");
-
-            // Print the text in the div made for it.
-
-            div.innerHTML = text;
-
-        }
-
-         
-
-        function mod_selection (val1,val2) {
-
-            // Get the text area
-
-            var textArea = document.getElementById('my_text');
-
-             
-
-            // IE specific code.
-
-            if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
-
-                 
-
-                var range = document.selection.createRange();
-
-                var stored_range = range.duplicate();
-
-                 
-
-                if(stored_range.length > 0) {
-
-                    stored_range.moveToElementText(textArea);
-
-                    stored_range.setEndPoint('EndToEnd', range);
-
-                    textArea.selectionStart = stored_range.text.length - range.text.length;
-
-                    textArea.selectionEnd = textArea.selectionStart + range.text.length;
-
-                }
-
-            }
-
-            // Do we even have a selection?
-
-            if (typeof(textArea.selectionStart) != "undefined") {
-
-                // Split the text in three pieces - the selection, and what comes before and after.
-
-                var begin = textArea.value.substr(0, textArea.selectionStart);
-
-                var selection = textArea.value.substr(textArea.selectionStart, textArea.selectionEnd - textArea.selectionStart);
-
-                var end = textArea.value.substr(textArea.selectionEnond);
-
-                // Insert the tags between the three pieces of text.
-
-                textArea.value = begin + val1 + selection + val2 + end;
-
-            }
-
-        }
+function boldIt(){
+    var edit = document.getElementById("textEditor").contentWindow;
+    edit.focus();
+    edit.document.execCommand("bold", false, "");
+    edit.focus();
+}
+function ItalicIt(){
+   var edit = document.getElementById("textEditor").contentWindow;
+    edit.focus();
+    edit.document.execCommand("italic", false, "");
+    edit.focus();
+}
+function changeFont(font){
+    var edit = document.getElementById("textEditor").contentWindow;
+    edit.focus();
+    edit.document.execCommand("FontName", false, font);
+    edit.focus();
+}
+function url(url){
+    var edit = document.getElementById("textEditor").contentWindow;
+    edit.focus();
+    edit.document.execCommand("Createlink", false, url);
+    edit.focus();
+}
+setInterval(function(){
+    var gyt=$("#textEditor").contents().find("body").html().match(/@/g);
+    if($("#textEditor").contents().find("body").html().match(/@/g)>=0){}else{
+    $("#text").val($("#textEditor").contents().find("body").html());
+    }
+    $("#text").val($("#textEditor").contents().find("body").html());
+    },1000);
