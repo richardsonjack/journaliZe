@@ -10,7 +10,9 @@
 			<div id = "main">
 				<header>
 
-					<a href="homepage.html"><img class ="icon" src="images/logo.png" alt="Logo" width="97" height="70"></a><a href="signin.html"><img class="logout" src="images/logout.png" alt="Logout" width="45" height="45" align="right" hspace="20"></a><a href="account_settings.html"><img class="icon" src="images/settings.png" alt="Settings" width="70" height="70" align="right"></a>
+					<a href="homepage.html"><img class ="icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
+					<a href="signin.html"><img class="logout" id="logoff" src="images/logout.png" alt="Logout" width="45" height="45"></a>
+					<a href="account_settings.html"><img class="icon" id = "settings" src="images/settings.png" alt="Settings" width="70" height="70"></a>
 
 				</header>
 				<span
@@ -28,11 +30,11 @@
 				</footer>
 			</div>
 
-			<div id="form_box">
-				<h2 id = "form_header" align="center">Sign In</h2>
+			<div id="form_box" class="container">
+				<h2 id = "form_header">Sign In</h2>
 				<form action="">
-  					<input type="Username" name="Username" placeholder="Username" required><br>
-  					<input type="Password" name="Password" placeholder="Password" required><br>
+  					<input type="text" name="Username" placeholder="Username" required><br>
+  					<input type="password" name="Password" placeholder="Password" required><br>
   					<input class="button" type="submit" name="login_btn">
 				</form>
 				<a href="">New Account</a>
