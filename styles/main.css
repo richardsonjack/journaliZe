@@ -112,9 +112,10 @@ tr.not_header:hover {
     right:0;
     left:0;
     width:1000px;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Light grey */
     border-radius: 25px;
-}
+} /* used for large sections of text/images */
+
 h2.rounded{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
