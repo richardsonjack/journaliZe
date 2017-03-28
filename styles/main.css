@@ -115,11 +115,6 @@ h2.rounded{
 }
 
 
-h2#form_header{
-	border-top-left-radius: 25px;
-	border-top-right-radius: 25px;
-}
-
 h2#largeBoxHeader{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
