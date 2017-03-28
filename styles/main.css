@@ -57,11 +57,27 @@ footer{
     border-radius: 25px;
 }
 
+#largeBox{
+    padding-bottom: 30px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 50%;
+    right:0;
+    left:0;
+    width:1000px;
+    background-color: #ffffff;
+    border-radius: 25px;
+}
 h2#form_header{
 	border-top-left-radius: 25px;
 	border-top-right-radius: 25px;
 }
 
+h2#largeBoxHeader{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
 
 form{
     background-color: inherit;
