@@ -1,20 +1,9 @@
 <!DOCTYPE html> 
 	<html>
 		<head> 
-			<meta charset="UTF-8">
+			<meta charset="UTF-8" name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
 			<title>JournaliZe</title>
 			<link href="styles/main.css" rel="stylesheet" type="text/css" />
-			<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
-  			<script type="text/javascript" src="js/nicEdit.js"></script>
-
-  			<script type="text/javascript">
-			//<![CDATA[
-        	bkLib.onDomLoaded(function() { 
-        		new nicEditor({fullPanel : true, iconsPath : 'images/nicEditorIcons.gif', maxHeight : 400}).panelInstance('text_editor'); 
-        	});
-  			//]]>
-  			</script>
-
 		</head>
 
 		<body>
@@ -22,33 +11,40 @@
 				<header>
 					<a href="signin.html"><img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
 
-					
 					<a href="account_settings.html"><img class="icon" id = "settings" src="images/settings.png" alt="Settings" width="70" height="70"></a>
-					
 				</header>
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
 			</div>
 
-			<div id="journal_entry_box">
-
-				<h2>New Entry</h2>
-
-				<form id="entry_meta_data">
-					Title: 
-					<input type="text" name="title">&nbsp;&nbsp;&nbsp;&nbsp;
-					Date:
-					<input type="date" name="date"></br></br>
-				</form>
-
-				<!--texteditor--> 
-				<div class="container">
-					<textarea name="text_editor" cols="40" id="text_editor";>
-					</textarea><br />
-				</div>
-
-				<button class="button" type="submit" form="entry_meta_data">Journal</button>
-
+			<div class="container" id="daily_view_container">
+				<h2 class= "rounded">Monday, 22nd of April</h2>
+				<table id="daily_events">
+					<tr>
+						<th>Time</th>
+						<th>Event</th>
+						<th>Journal Entry</th>
+					</tr>
+					<tr class= "not_header">
+						<td>8:15am</td>
+						<td>Breakfast With Sam</td>
+						<td>I Had Toast. It Was Yum</td>
+					</tr>
+					<tr class= "not_header">
+						<td>10:15am</td>
+						<td>Personal Trainer</td>
+						<td>Today I did measurements for the month of April. I lost 3 cm off of my waist</td>
+					</tr>
+					<tr class= "not_header">
+						<td>2:30pm</td>
+						<td>Meeting With PR Team</td>
+						<td>We dicussed the Interveiw with Today Tonight and what this means.</td>
+					</tr>
+				</table>
+				<button class="button" id="left_button">&larr;</button>
+				<button class="button" id="new_entry_button">New Entry</button>
+				<button class="button" id="right_button">&rarr;</button>
 			</div>
+
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  				<a href="index.html">Home</a>
