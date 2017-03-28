@@ -25,10 +25,6 @@
 
 			<script src="js/sidenav.js"></script>
 
-
-			
-			
-
 			<footer>
 				<nav>
 					<ul class="horz_nav_bar">
@@ -39,7 +35,5 @@
 					
 				</nav>
 			</footer>
-			
-			<!-- This is a comment. Not visible. --> 
 		</body>
 	</html>
