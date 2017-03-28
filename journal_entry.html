@@ -10,12 +10,12 @@
 			<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
   			<script type="text/javascript" src="js/nicEdit.js"></script>
 
+  			<!-- text edditor initialize and customize -->
   			<script type="text/javascript">
-			//<![CDATA[
+
         	bkLib.onDomLoaded(function() { 
         		new nicEditor({fullPanel : true, iconsPath : 'images/nicEditorIcons.gif', maxHeight : 400}).panelInstance('text_editor'); 
         	});
-  			//]]>
   			</script>
 
 		</head>
@@ -23,19 +23,20 @@
 		<body>
 			<div id = "main">
 				<header>
-					<a href="signin.html"><img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
 
-					
+					<!-- logo and icons -->
+					<a href="signin.html"><img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
+					<a href="signin.html"><img class="logout" id="logoff" src="images/logout.png" alt="Logout" width="45" height="45"></a>
 					<a href="account_settings.html"><img class="icon" id = "settings" src="images/settings.png" alt="Settings" width="70" height="70"></a>
 					
 				</header>
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
 			</div>
-
+			<!-- journal entry container -->
 			<div id="journal_entry_box" class="container">
 
 				<h2 class="rounded">New Entry</h2>
-
+				<!-- metadata -->
 				<form id="entry_meta_data">
 					Title: 
 					<input type="text" name="title">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,6 +53,7 @@
 				<button class="button" type="submit" form="entry_meta_data">Journal</button>
 
 			</div>
+			<!-- sidenav -->
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  				<a href="index.html">Home</a>
