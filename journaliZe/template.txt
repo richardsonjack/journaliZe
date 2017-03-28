@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+	<html>
+		<head> 
+			<meta charset="UTF-8">
+			<title>JournaliZe</title>
+			<link href="styles/main.css" rel="stylesheet" type="text/css" />
+		</head>
+
+		<body>
+			<div id = "main">
+				<header>
+					<a href="signin.html"><img class = "icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
+
+					<a href="account_settings.html"><img class="icon" id = "settings" src="images/settings.png" alt="Settings" width="70" height="70"></a>
+				</header>
+				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
+			</div>
+
+			<div id="mySidenav" class="sidenav">
+ 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+ 				<a href="index.html">Home</a>
+ 				<a href="page2.html">Page 2</a>
+ 				<a href="page3.html">Page 3</a>
+			</div>
+
+			<script src="js/sidenav.js"></script>
+
+			<footer>
+				<nav>
+					<ul class="horz_nav_bar">
+						<li class = "horz_nav_bar_item"><a href="" class="horz_nav_bar_link">About</a></li>
+						<li class = "horz_nav_bar_item"><a href="" class="horz_nav_bar_link">Support</a></li>
+						<li class = "horz_nav_bar_item"><a href="" class="horz_nav_bar_link">Contact Us</a></li>
+					</ul>
+					
+				</nav>
+			</footer>
+		</body>
+	</html>
