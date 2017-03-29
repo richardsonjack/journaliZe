@@ -45,8 +45,9 @@ header,footer{
 }
 
 footer{
-    position: fixed;
+    position: relative;
     bottom:0;
+    margin-top: 40px;
 }
 
 textarea{
