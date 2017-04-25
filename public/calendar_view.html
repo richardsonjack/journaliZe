@@ -6,7 +6,14 @@
 			<title>JournaliZe</title>
 			<link href="stylesheets/main.css" rel="stylesheet" type="text/css" />
 
-			<script src="javascripts/dailyview.js"></script>
+
+			<link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+			<script src='fullcalendar/lib/jquery.min.js'></script>
+			<script src='fullcalendar/lib/moment.min.js'></script>
+			<script src='fullcalendar/fullcalendar.js'></script>
+			<script type='text/javascript' src='fullcalendar/gcal.js'></script>
+
+			<script src="javascripts/calendarview.js"></script>
 			<script async defer src="https://apis.google.com/js/api.js"
 			      onload="this.onload=function(){};handleClientLoad()"
 			      onreadystatechange="if (this.readyState === 'complete') this.onload()">
@@ -28,10 +35,9 @@
 
 			<!-- page content container -->
 
-			<div id="cal"> 
-			   
+			<div id='calendar'></div>
 
-			</div>
+
 			<!-- side nav bar -->
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
