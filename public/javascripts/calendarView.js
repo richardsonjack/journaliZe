@@ -8,7 +8,7 @@ $(document).ready(function() {
     	},
     	googleCalendarApiKey: 'AIzaSyBLhvEwf5xeIj6EFrnbI0AxZ9VVIU_6giQ',
         events: {
-            googleCalendarId: 'richardson.jack@outlook.com'
+            googleCalendarId: 'ba9ura3nt0l78eobkdqb0rikd4@group.calendar.google.com'
         }
     })
 
