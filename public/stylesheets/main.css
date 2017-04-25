@@ -212,7 +212,7 @@ form{
     transition: margin-left .5s;
 }
 
-h2 {
+h2.background {
     background: #e2e2e2;
 }
 
