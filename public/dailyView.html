@@ -5,9 +5,11 @@
 			<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
 			<title>JournaliZe</title>
 			<link href="stylesheets/main.css" rel="stylesheet" type="text/css" />
+
 		</head>
 
 		<body>
+
 			<div id = "main">
 				<header>
 					<a href="homepage.html"><img class ="icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
@@ -18,33 +20,35 @@
 			</div>
 
 			<div class="container" id="daily_view_container">
-				<h2 class= "rounded">Monday, 22nd of April</h2>
+				<h2 id="dailyheader" class= "rounded">Monday, 22nd of April</h2>
+				
+				<button id="authorize-button" style="display: none;">Authorize</button>
+   				<button id="signout-button" style="display: none;">Sign Out</button>
+
+
 				<table id="daily_events">
-					<tr>
-						<th>Time</th>
-						<th>Event</th>
-						<th>Journal Entry</th>
-					</tr>
-					<tr class= "not_header">
-						<td>8:15am</td>
-						<td>Breakfast With Sam</td>
-						<td>I Had Toast. It Was Yum</td>
-					</tr>
-					<tr class= "not_header">
-						<td>10:15am</td>
-						<td>Personal Trainer</td>
-						<td>Today I did measurements for the month of April. I lost 3 cm off of my waist</td>
-					</tr>
-					<tr class= "not_header">
-						<td>2:30pm</td>
-						<td>Meeting With PR Team</td>
-						<td>We dicussed the Interveiw with Today Tonight and what this means.</td>
+					<tr id = tableHeader>
+						<th>
+							Event
+						</th>
+						<th>
+							Time
+						</th>
+						<th>
+							Journal Entry
+						</th>
 					</tr>
 				</table>
+
 				<button class="button" id="left_button">&larr;</button>
-				<button class="button" id="new_entry_button">New Entry</button>
+				<button class="button" id="new_entry_button" onclick="goToMakeEntry()">New Entry</button>
 				<button class="button" id="right_button">&rarr;</button>
 			</div>
+			<script src="javascripts/dailyview.js"></script>
+			<script async defer src="https://apis.google.com/js/api.js"
+		      	onload="this.onload=function(){};handleClientLoad();"
+		      	onreadystatechange="if (this.readyState === 'complete') this.onload()">
+		    </script>
 
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
