@@ -6,6 +6,7 @@
 			<title>JournaliZe</title>
 			<link href="stylesheets/main.css" rel="stylesheet" type="text/css"/>
       <script src="javascripts/sidenav.js"></script>
+      <script src="javascripts/homepage.js"></script>
 		</head>
 
 		<body>
@@ -28,11 +29,11 @@
       <div class="home">
         <div class="info container">
         	<h1>Welcome to JournaliZe</h1>
-        	<a href="journal_entry.html"><button class="button">Create Journal Entry</button></a>
-          <a href="dailyView.html"><button class="button">View Daily Feed</button></a>
-          <a href="calendar_view.html"><button class="button">View Monthly Calendar</button></a>
-          <a href="account_settings.html"><button class="button">View Account Settings</button></a>
-          <a href="signin.html"><button class="button">Sign Out</button></a>
+        	<button class="button" value="journal_entry.html" onclick="navigate(this)">Create Journal Entry</button>
+          <button class="button" value="dailyView.html" onclick="navigate(this)">View Daily Feed</button>
+          <button class="button" value="calendar_view.html" onclick="navigate(this)">View Monthly Calendar</button>
+          <button class="button" value="account_settings.html" onclick="navigate(this)">View Account Settings</button>
+          <button class="button" value="signin.html" onclick="navigate(this)">Sign Out</button>
 
 
         </div>

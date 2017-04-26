@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', function(req, res){
-  res.sendfile(path.join(__dirname,'/public/homepage.html'));
+  res.sendfile(path.join(__dirname,'/public/opening_page.html'));
 });
 app.use('/users', users);
 

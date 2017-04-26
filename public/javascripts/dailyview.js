@@ -108,7 +108,7 @@
       function listUpcomingEvents() {
         
         gapi.client.calendar.events.list({
-          'calendarId': 'primary',
+          'calendarId': 'ba9ura3nt0l78eobkdqb0rikd4@group.calendar.google.com',
           'timeMin': (start).toISOString(),
           'timeMax': (end).toISOString(),
           'showDeleted': false,
