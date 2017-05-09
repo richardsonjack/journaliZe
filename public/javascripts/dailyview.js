@@ -147,7 +147,13 @@
 
               eventName.innerHTML = event.summary;
               time.innerHTML = timeVal;
-              journalEntry.innerHTML = entries[dateVal][event.id].content;
+              if(entries[dateVal])
+              {
+                if(entries[dateVal][event.id])
+                {
+                  journalEntry.innerHTML = entries[dateVal][event.id].content;
+                }
+              }
             }
           }
       }
@@ -166,6 +172,7 @@
 
        function goToMakeEntry() {
             localStorage["dateTime"] = start.toDateString();
+            localStorage["id"] = Math.random();
             url = 'http://' + window.location.host + '/journal_entry.html'
             document.location.href = url;
         }

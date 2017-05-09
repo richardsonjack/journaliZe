@@ -1,16 +1,70 @@
+var entryID;
+var date;
+var title;
+
+
 window.onload = function () {
 	if(typeof localStorage["dateTime"] !='undefined'){
-		var date = localStorage["dateTime"];
+		date = localStorage["dateTime"];
 		document.getElementById("dateField").value = date;
     	localStorage.removeItem("dateTime");
 	}
 	if(typeof localStorage["eventName"] !='undefined'){
-		var title = localStorage["eventName"];
+		title = localStorage["eventName"];
 		document.getElementById("eventTitle").value = title;
     	localStorage.removeItem("eventName");
 	}
-    
-    
-
-    
+	if(typeof localStorage["id"] !='undefined'){
+		entryID = localStorage["id"];
+    	localStorage.removeItem("id");
+	}
+   
 }
+
+var xmlhttp = new XMLHttpRequest();
+var sendhttp = new XMLHttpRequest();
+submitEntry = function(){
+		xmlhttp.open("GET", "http://localhost:3000/journal.json", true);
+
+        xmlhttp.send();
+}
+
+xmlhttp.onreadystatechange = function() {
+          if(this.readyState == 4 && this.status == 200){
+	          journal = JSON.parse(this.responseText);
+	          console.log(journal);
+	          console.log(entryID);
+	          console.log(date);
+	          date = document.getElementById("dateField").value;
+	          title = document.getElementById("eventTitle").value;
+	          content = nicEditors.findEditor('text_editor').getContent();
+	          if(!journal[date])
+	          {
+	          	journal[date] = {}
+	          }
+	          
+	          journal[date][entryID] = {"eventID" :  entryID,"time" :  Date.parse(date) ,"title" : title ,"content" : content};
+
+	          // sendhttp.open("POST","http://localhost:3000/journal.json",true)
+	          // sendhttp.setRequestHeader("content-type","application/json");
+	          // sendhttp.send(JSON.stringify(journal));
+
+			$.post({
+			url:"http://localhost:3000/journal.json",
+			data: JSON.stringify(journal),
+			contentType: "application/json"
+			})
+	          
+
+              
+ };
+}
+
+sendhttp.onreadystatechange = function() {
+          if(this.readyState == 4 && this.status == 200){
+          	url = 'http://' + window.location.host + '/dailyView.html'
+   				document.location.href = url;
+
+     };
+}
+      	
