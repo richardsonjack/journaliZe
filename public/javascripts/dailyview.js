@@ -19,7 +19,10 @@
       var heading = document.getElementById("dailyheader");
       var table = document.getElementById("daily_events");
       heading.innerHTML = start.toDateString();
+      var allEvents;
 
+      //var fs = require('fs');
+      var xmlhttp = new XMLHttpRequest();
 
 
       Date.prototype.customFormat = function(formatString){
@@ -113,19 +116,26 @@
           'timeMax': (end).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
-          'maxResults': 10,
+          'maxResults': 20,
           'orderBy': 'startTime'
         }).then(function(response) {
-          var events = response.result.items;
+          allEvents = response.result.items;
+          xmlhttp.open("GET", "http://localhost:3000/journal.json", true);
+          xmlhttp.send();
+          
+        });
+      }
 
-
-          if (events.length > 0) {
+      listEntries = function(events,entries)
+      {
+        if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
               when = event.start.dateTime;
               when = Date.parse(when);
-              when = new Date(when).customFormat("#h#:#mm# #AMPM#");
-              if (!when) {
+              dateVal = new Date(when).toDateString();
+              timeVal = new Date(when).customFormat("#h#:#mm# #AMPM#");
+              if (!timeVal) {
                 when = event.start.dateTime;
                 when = Date.parse(when);
                // when = new Date(when).;
@@ -136,12 +146,23 @@
               journalEntry = row.insertCell(2);
 
               eventName.innerHTML = event.summary;
-              time.innerHTML = when;
+              time.innerHTML = timeVal;
+              journalEntry.innerHTML = entries[dateVal][event.id].content;
             }
           }
-        });
-
       }
+
+      
+
+      xmlhttp.onreadystatechange = function() {
+          if(this.readyState == 4 && this.status == 200){
+              journal = JSON.parse(this.responseText);
+              listEntries(allEvents,journal);
+          }
+      };
+      
+
+
 
        function goToMakeEntry() {
             localStorage["dateTime"] = start.toDateString();

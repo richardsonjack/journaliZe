@@ -12399,7 +12399,7 @@ var momComputableOptions = {
 	// Produces format strings like "h:mma" -> "6:00pm"
 	mediumTimeFormat: function(momOptions) { // can't be called `timeFormat` because collides with option
 		return momOptions.longDateFormat('LT')
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+			//.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
 	},
 
 	// Produces format strings like "h(:mm)a" -> "6pm" / "6:30pm"
@@ -12407,7 +12407,7 @@ var momComputableOptions = {
 		return momOptions.longDateFormat('LT')
 			.replace(':mm', '(:mm)')
 			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign locales
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+			//.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
 	},
 
 	// Produces format strings like "h(:mm)t" -> "6p" / "6:30p"
@@ -12415,7 +12415,7 @@ var momComputableOptions = {
 		return momOptions.longDateFormat('LT')
 			.replace(':mm', '(:mm)')
 			.replace(/(\Wmm)$/, '($1)') // like above, but for foreign locales
-			.replace(/\s*a$/i, 't'); // convert to AM/PM/am/pm to lowercase one-letter. remove any spaces beforehand
+			//.replace(/\s*a$/i, 't'); // convert to AM/PM/am/pm to lowercase one-letter. remove any spaces beforehand
 	},
 
 	// Produces format strings like "ha" / "H" -> "6pm" / "18"
@@ -12423,7 +12423,7 @@ var momComputableOptions = {
 		return momOptions.longDateFormat('LT')
 			.replace(':mm', '')
 			.replace(/(\Wmm)$/, '') // like above, but for foreign locales
-			.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
+			//.replace(/\s*a$/i, 'a'); // convert AM/PM/am/pm to lowercase. remove any spaces beforehand
 	},
 
 	// Produces format strings like "h:mm" -> "6:30" (with no AM/PM)
