@@ -45,7 +45,7 @@ header,footer{
 }
 
 footer{
-    position: fixed;
+    position: relative;
     bottom:0;
     margin-top: 40px;
 }
@@ -84,7 +84,7 @@ textarea{
     width: 1000px;
 }
 
-.container{ 
+.container{
     padding-bottom: 30px;
     margin: 0 auto;
     position: relative;
@@ -93,17 +93,9 @@ textarea{
     background-color: #ffffff;
     border-radius: 25px;
     width:100%;
+    text-align: center;
 }
 
-.infocontainer{
-  padding-top: 7%;
-  text-align: center;
-}
-
-.opencontainer{
-  padding-top: 7%;
-  text-align: center;
-}
 #daily_view_container{
     width:1000px;
     width: 85%
