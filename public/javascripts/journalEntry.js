@@ -22,12 +22,14 @@ window.onload = function () {
 }
 
 var xmlhttp = new XMLHttpRequest();
-var sendhttp = new XMLHttpRequest();
+
 submitEntry = function(){
 		xmlhttp.open("GET", "http://localhost:3000/journal.json", true);
 
         xmlhttp.send();
 }
+
+
 
 xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
@@ -45,26 +47,35 @@ xmlhttp.onreadystatechange = function() {
 	          
 	          journal[date][entryID] = {"eventID" :  entryID,"time" :  Date.parse(date) ,"title" : title ,"content" : content};
 
-	          // sendhttp.open("POST","http://localhost:3000/journal.json",true)
-	          // sendhttp.setRequestHeader("content-type","application/json");
-	          // sendhttp.send(JSON.stringify(journal));
+	          console.log(JSON.stringify(journal));
 
-			$.post({
-			url:"http://localhost:3000/journal.json",
-			data: JSON.stringify(journal),
-			contentType: "application/json"
-			})
+	          posting();
+
+
+	         
+
 	          
 
               
  };
 }
 
-sendhttp.onreadystatechange = function() {
+posting = function()
+{
+	var sendhttp = new XMLHttpRequest();
+
+	 sendhttp.open("POST","http://localhost:3000/write_journal.json",true)
+	         // sendhttp.setRequestHeader("content-type","application/json");
+	          sendhttp.send(JSON.stringify(journal));
+
+	sendhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
           	url = 'http://' + window.location.host + '/dailyView.html'
    				document.location.href = url;
 
-     };
+		     }
+		};	          
 }
+
+
       	
