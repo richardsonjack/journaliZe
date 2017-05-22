@@ -12,7 +12,9 @@ router.get('/', function(req, res, next) {
   	res.sendFile('/opening_page.html', {root: rootPath});
 });
 
-router.get('/get_journal.json',function(req, res, next) {
+router.get('/get_journal.json/:date',function(req, res, next) {
+  
+  console.log(req.params.date);
   res.header("Content-Type",'application/json');
   res.json(journalServer);
 });

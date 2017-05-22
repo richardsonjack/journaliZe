@@ -8,6 +8,7 @@ $(document).ready(function() {
         	localStorage["dateTime"] = new Date(Date.parse(calEvent.start)).toDateString();
         	localStorage["eventName"] = calEvent.title;
             localStorage["id"] = calEvent.id;
+            console.log(calEvent.id);
             url = 'http://' + window.location.host + '/journal_entry.html'
             document.location.href = url;
 		return false;

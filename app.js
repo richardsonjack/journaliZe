@@ -8,7 +8,18 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var xss = require('xss');
+
+var mysql = require('mysql');                                                                        
+var dbConnectionPool = mysql.createPool({ host: 'localhost', user: "server", password: 'a1b2c3',database: 'journaliZe'});
+
 var app = express();
+app.use(function(req, res, next) { 
+    req.pool = dbConnectionPool; 
+    next(); 
+});
+console.log("pls");
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', function(req, res){
 //   res.sendFile(path.join(__dirname,'/public/opening_page.html'));
 // });
+
+ 
 app.use('/', routes);
 app.use('/users', users);
 
