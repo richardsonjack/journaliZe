@@ -4,6 +4,10 @@ var title;
 
 
 window.onload = function () {
+
+	xmlhttp.open("GET", "http://localhost:3000/get_journal.json", true);
+    xmlhttp.send();
+
 	if(typeof localStorage["dateTime"] !='undefined'){
 		date = localStorage["dateTime"];
 		document.getElementById("dateField").value = date;
@@ -18,64 +22,59 @@ window.onload = function () {
 		entryID = localStorage["id"];
     	localStorage.removeItem("id");
 	}
-   
 }
 
 var xmlhttp = new XMLHttpRequest();
+var sendhttp = new XMLHttpRequest();
 
 submitEntry = function(){
-		xmlhttp.open("GET", "http://localhost:3000/journal.json", true);
+		date = document.getElementById("dateField").value;
+	    title = document.getElementById("eventTitle").value;
+	    content = nicEditors.findEditor('text_editor').getContent();
+	    if(!journal[date])
+        {
+       		journal[date] = {}
+        }
+          
+        journal[date][entryID] = {"eventID" :  entryID,"time" :  Date.parse(date) ,"title" : title ,"content" : content};
 
-        xmlhttp.send();
+          
+
+        sendhttp.open("POST","http://localhost:3000/journal.json",true)
+		sendhttp.setRequestHeader("content-type","application/json");
+		sendhttp.send(JSON.stringify(journal)); 
 }
 
 
 
 xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
-	          journal = JSON.parse(this.responseText);
-	          console.log(journal);
-	          console.log(entryID);
-	          console.log(date);
-	          date = document.getElementById("dateField").value;
-	          title = document.getElementById("eventTitle").value;
-	          content = nicEditors.findEditor('text_editor').getContent();
-	          if(!journal[date])
-	          {
-	          	journal[date] = {}
-	          }
-	          
-	          journal[date][entryID] = {"eventID" :  entryID,"time" :  Date.parse(date) ,"title" : title ,"content" : content};
+          	journal = JSON.parse(this.responseText);
+          	if(journal[date][entryID])
+          	{
+				nicEditors.findEditor('text_editor').setContent(journal[date][entryID].content)
+          	}
 
-	          console.log(JSON.stringify(journal));
-
-	          posting();
-
-
-	         
+			
 
 	          
+	           
 
-              
+          
  };
 }
 
-posting = function()
-{
-	var sendhttp = new XMLHttpRequest();
-
-	 sendhttp.open("POST","http://localhost:3000/write_journal.json",true)
-	         // sendhttp.setRequestHeader("content-type","application/json");
-	          sendhttp.send(JSON.stringify(journal));
-
-	sendhttp.onreadystatechange = function() {
+sendhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
-          	url = 'http://' + window.location.host + '/dailyView.html'
-   				document.location.href = url;
 
-		     }
-		};	          
-}
+          	localStorage["todayDate"] = date;
+
+          	url = 'http://' + window.location.host + '/dailyView.html'
+   			document.location.href = url;
+
+		}
+
+		};	
 
 
       	

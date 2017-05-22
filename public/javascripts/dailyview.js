@@ -10,18 +10,33 @@
 
       var authorizeButton = document.getElementById('authorize-button');
       var signoutButton = document.getElementById('signout-button');
+      var today
+      if(typeof localStorage["todayDate"] !='undefined'){
+          today = localStorage["todayDate"];
+          localStorage.removeItem("todayDate");
+          var start = new Date(Date.parse(today));
+          var end = new Date(Date.parse(today));
+      }else
+      {
+          var start = new Date();
+          var end = new Date();
+      }
 
-      var start = new Date();
+
+      
       start.setHours(0,0,0,0);
 
-      var end = new Date();
+      
       end.setHours(23,59,59,999);
+
+      today = start;
+
       var heading = document.getElementById("dailyheader");
       var table = document.getElementById("daily_events");
-      heading.innerHTML = start.toDateString();
+
+      heading.innerHTML = today.toDateString();
       var allEvents;
 
-      //var fs = require('fs');
       var xmlhttp = new XMLHttpRequest();
 
 
@@ -120,7 +135,7 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           allEvents = response.result.items;
-          xmlhttp.open("GET", "http://localhost:3000/journal.json", true);
+          xmlhttp.open("GET", "http://localhost:3000/get_journal.json", true);
           xmlhttp.send();
           
         });
@@ -144,6 +159,16 @@
               eventName = row.insertCell(0);
               time = row.insertCell(1);
               journalEntry = row.insertCell(2);
+              clickFunc = function(_event){
+                                            return function(){
+                                              localStorage["eventName"] = _event.summary;
+                                              localStorage["dateTime"] = new Date(Date.parse(_event.start.dateTime)).toDateString();
+                                              localStorage["id"] = _event.id;
+                                              url = 'http://' + window.location.host + '/journal_entry.html'
+                                              document.location.href = url;
+                                            }
+              }
+              row.onclick = clickFunc(event);
 
               eventName.innerHTML = event.summary;
               time.innerHTML = timeVal;
@@ -158,11 +183,37 @@
           }
       }
 
+      clearTable = function()
+      {
+        table.innerHTML = "<tr id = tableHeader><th>Event</th><th>Time</th><th>Journal Entry</th></tr>"
+      }
+
+      nextDay = function()
+      {
+        clearTable();
+        start.setDate(start.getDate()+1);
+        end.setDate(end.getDate()+1);
+        listUpcomingEvents();
+        today = start;
+        heading.innerHTML = today.toDateString();
+      }
+
+      lastDay = function()
+      {
+        clearTable();
+        start.setDate(start.getDate()-1);
+        end.setDate(end.getDate()-1);
+        listUpcomingEvents();
+        today = start;
+        heading.innerHTML = today.toDateString();
+      }
+
       
 
       xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
               journal = JSON.parse(this.responseText);
+              console.log(journal);
               listEntries(allEvents,journal);
           }
       };
