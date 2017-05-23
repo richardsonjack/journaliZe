@@ -6,6 +6,9 @@ var fs = require('fs');
 var path = require("path");
 var rootPath = '/Users/JackRichardson/Documents/Uni/2017/WDC/journaliZe/public/';
 
+var users;
+var token;
+
 var journalServer = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/', 'journal.json'),'UTF-8'));
 
 /* GET home page. */
@@ -77,27 +80,64 @@ router.post('/submitEntry',function(req, res, next){
 });
 
 router.post('/tokenSend',function(req, res, next){
+	token = req.body.token;
+	if(!users)
+	{
+		req.pool.getConnection( function(err,connection) { //Connect to the database
+		    if (err) { // If there's a problem connecting
+		        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
+		        throw err; // Exit with an error
+		    }
+		    var query = "SHOW * FROM users"; // <-- THIS IS OUR SQL QUERY
+		    connection.query(query, function(err, rows, fields) { // run query
+		        connection.release(); //release connection for more queries
+		        users = rows;
+		        verifyToken(token);
+
+		       
+		    });
+		});
+	}else{
+		verifyToken(token);
+	}
+
 	
-	var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + req.body.idtoken, true);
-		xmlhttp.send();
 
-		xmlhttp.onreadystatechange = function() {
-          if(this.readyState == 4 && this.status == 200){
-          	
-          	var response = this.responseText;
-			
-          	res.send(response.email);
-	        res.end();   
-	           
 
-          
-		 };
 
+
+
+
+	
+  });
+
+
+verifyToken = function(token){
+	 var auth = new GoogleAuth;
+				var client = new auth.OAuth2(CLIENT_ID, '', '');
+				
+				client.verifyIdToken(
+			 	token,
+			 	'738855749966-2u3bkpbodlpneirfrqt853h1mtrv1trr.apps.googleusercontent.com',
+			  	function(e, login) {
+			    var payload = login.getPayload();
+			    var userid = payload['sub'];
+			    var newUser = true;
+			    // Search the users list for user with matching googleID
+			    for (var i=0; i<users.length; i++){
+			    	
+			      	if (users[i].googleID === userid){
+			      		newUser = false;
+			      		users[i].session = req.sessionID;
+			        	console.log(users[i].name+" logged in.");
+			      	}
+			    }
+			    if (newUser === true){
+			      	var user = {'name':payload['name'], 'email':payload['email'], 'googleID':userid};
+			      	users.push(user);
+			     	console.log(user.name+" created and logged in.");
+			    }	
 }
-
-	
-});
 
 
 

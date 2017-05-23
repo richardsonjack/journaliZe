@@ -47,6 +47,6 @@ function sendToken(token){
 
 
 xhr.onload = function() {
-  console.log('Signed in as: ' + xhr.responseText);
+  //console.log('Signed in as: ' + xhr.responseText);
   move();
 };			        
