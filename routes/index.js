@@ -68,11 +68,15 @@ router.post('/submitEntry',function(req, res, next){
 		    id = data.eventID;
 		    time = data.time;
 
-		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES (" + data + "," + title + "," + content + ","+id+","+time+") "; // <-- THIS IS OUR SQL QUERY
-		    connection.query(query, function(err, rows, fields) { // run query
-		        connection.release(); //release connection for more queries
-		 		console.log("added")
-		    });
+		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES ('2016-08-22','this title','some content','56','12:55:00') "; // <-- THIS IS OUR SQL QUERY
+		    console.log(query);
+		    connection.query(query,function(err, result) {
+	    	if (err)
+			{connection.release(); throw err;}
+			else
+			{connection.release();
+				console.log("added");}
+		});
 		});
 
 
