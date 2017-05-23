@@ -12,12 +12,42 @@ router.get('/', function(req, res, next) {
   	res.sendFile('/opening_page.html', {root: rootPath});
 });
 
-router.get('/get_journal.json/:date',function(req, res, next) {
+router.get('/get_journal_day.json/:date',function(req, res, next) {
   
-  console.log(req.params.date);
-  res.header("Content-Type",'application/json');
-  res.json(journalServer);
+
+	req.pool.getConnection( function(err,connection) { //Connect to the database
+	    if (err) { // If there's a problem connecting
+	        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
+	        throw err; // Exit with an error
+	    }
+	    var query = "SHOW * FROM journals WHERE DATE = ?"; // <-- THIS IS OUR SQL QUERY
+	    connection.query(query, [req.params.date], function(err, rows, fields) { // run query
+	        connection.release(); //release connection for more queries
+	        console.log(rows); // print the query to console
+	        res.header("Content-Type",'application/json');
+	        res.json(rows); // send query response as JSON
+	    });
+	});
 });
+
+router.get('/get_journal_event.json/:id',function(req, res, next) {
+  
+  
+
+	req.pool.getConnection( function(err,connection) { //Connect to the database
+		    if (err) { // If there's a problem connecting
+		        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
+		        throw err; // Exit with an error
+		    }
+		    var query = "SHOW * FROM journals WHERE eventID = ?"; // <-- THIS IS OUR SQL QUERY
+		    connection.query(query, [req.params.id], function(err, rows, fields) { // run query
+		        connection.release(); //release connection for more queries
+		        console.log(rows); // print the query to console
+		        res.json(rows); // send query response as JSON
+		    });
+		});
+
+	});
 
 router.post('/journal.json',function(req, res, next){
 	journalServer = req.body;

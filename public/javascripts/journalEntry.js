@@ -22,7 +22,7 @@ window.onload = function () {
     	localStorage.removeItem("eventName");
 	}
 	date = document.getElementById("dateField").value;
-	xmlhttp.open("GET", "http://localhost:3000/get_journal.json/adate", true);
+	xmlhttp.open("GET", "http://localhost:3000/get_journal_day.json/" + date, true);
 
     xmlhttp.send();
 
