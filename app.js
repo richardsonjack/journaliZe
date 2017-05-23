@@ -9,7 +9,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var xss = require('xss');
+
 
 var mysql = require('mysql');                                                                        
 var dbConnectionPool = mysql.createPool({ host: 'localhost', user: "server", password: 'a1b2c3',database: 'journaliZe'});

@@ -4,7 +4,7 @@ var CLIENT_ID = '698609138587-inrvscb6seit9957dso0dr3rdmaf9ggv.apps.googleuserco
 var express = require('express');
 var GoogleAuth = require('google-auth-library');
 var router = express.Router();
-
+var xss = require('xss');
 var fs = require('fs');
 var path = require("path");
 var rootPath = '/Users/JackRichardson/Documents/Uni/2017/WDC/journaliZe/public/';
@@ -28,7 +28,7 @@ router.get('/get_journal_day/:date',function(req, res, next) {
 	        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
 	        throw err; // Exit with an error
 	    }
-	    var query = "SELECT * FROM journals WHERE DATE = '?'"; // <-- THIS IS OUR SQL QUERY
+	    var query = "SELECT * FROM journals WHERE DATE = ?"; // <-- THIS IS OUR SQL QUERY
 	    console.log(query);
 	    connection.query(query,[xss(req.params.date)] ,function(err, rows, fields) { // run query
 	        connection.release(); //release connection for more queries
@@ -73,7 +73,7 @@ router.post('/submitEntry',function(req, res, next){
 		    id = xss(data.eventID);
 		    time = xss(data.time);
 
-		    var query = "REPLACE INTO journals (owned_by,date,title,content,eventID,time) VALUES ('1',?','?','?','?','?') "; // <-- THIS IS OUR SQL QUERY
+		    var query = "REPLACE INTO journals (owned_by,date,title,content,eventID,time) VALUES (1,?,?,?,?,?) "; // <-- THIS IS OUR SQL QUERY
 		    console.log(query);
 		    connection.query(query,[date,title,content,id,time],function(err, result) {
 	    	if (err)
