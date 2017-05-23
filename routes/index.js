@@ -1,4 +1,5 @@
 var express = require('express');
+var GoogleAuth = require('google-auth-library');
 var router = express.Router();
 
 var fs = require('fs');
@@ -52,6 +53,29 @@ router.get('/get_journal_event.json/:id',function(req, res, next) {
 router.post('/journal.json',function(req, res, next){
 	journalServer = req.body;
 	res.end();
+});
+
+router.post('/tokenSend',function(req, res, next){
+	
+	var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + req.body.idtoken, true);
+		xmlhttp.send();
+
+		xmlhttp.onreadystatechange = function() {
+          if(this.readyState == 4 && this.status == 200){
+          	
+          	var response = this.responseText;
+			
+          	res.send(response.email);
+	        res.end();   
+	           
+
+          
+		 };
+
+}
+
+	
 });
 
 

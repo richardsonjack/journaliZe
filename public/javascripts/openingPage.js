@@ -19,9 +19,8 @@ function onSignIn(googleUser) {
 			        // The ID token you need to pass to your backend:
 			        var id_token = googleUser.getAuthResponse().id_token;
 			        console.log("ID Token: " + id_token);
+			        sendToken(id_token);
 
-			        url = 'http://' + window.location.host + '/homepage.html'
-           			document.location.href = url;
 };
 function signOut() {
           var auth2 = gapi.auth2.getAuthInstance();
@@ -29,3 +28,25 @@ function signOut() {
             console.log('User signed out.');
           });
         }
+
+function move() {
+			    if(GoogleAuth.isSignedIn.get()){
+			    	url = 'http://' + window.location.host + '/homepage.html'
+           			document.location.href = url;
+			    }    
+};
+
+function sendToken(token){
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'http://localhost:3000/tokenSend');
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	xhr.send('idtoken=' + token);	
+}
+
+
+
+xhr.onload = function() {
+  console.log('Signed in as: ' + xhr.responseText);
+  move();
+};			        
