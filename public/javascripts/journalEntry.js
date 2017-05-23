@@ -40,8 +40,8 @@ submitEntry = function(){
 	    
         console.log(date);
         var myDate = new Date(date);
-        var sendDate = (myDate.getMonth() + 1) + "/" + myDate.getDate() + "/" + myDate.getFullYear();
-        var time = myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds() +   ":" + myDate.getMilliseconds()
+        var sendDate = myDate.getFullYear() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getDate();
+        var time = myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds()
         var newEntry = {"eventID" :  entryID,"date" :  sendDate, "time": time,"title" : title ,"content" : content};
 
           

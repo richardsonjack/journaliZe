@@ -24,8 +24,9 @@ router.get('/get_journal_day/:date',function(req, res, next) {
 	        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
 	        throw err; // Exit with an error
 	    }
-	    var query = "SHOW * FROM journals WHERE DATE = ?"; // <-- THIS IS OUR SQL QUERY
-	    connection.query(query, [req.params.date], function(err, rows, fields) { // run query
+	    var query = "SELECT * FROM journals WHERE DATE = '"+req.params.date+"'"; // <-- THIS IS OUR SQL QUERY
+	    console.log(query);
+	    connection.query(query, function(err, rows, fields) { // run query
 	        connection.release(); //release connection for more queries
 	        console.log(rows); // print the query to console
 	        res.header("Content-Type",'application/json');
@@ -68,7 +69,7 @@ router.post('/submitEntry',function(req, res, next){
 		    id = data.eventID;
 		    time = data.time;
 
-		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES (" + date + "," + title + "," + content + "," +id+ ","+time+") "; // <-- THIS IS OUR SQL QUERY
+		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES ('" + date + "','" + title + "','" + content + "','" +id+ "','"+time+"') "; // <-- THIS IS OUR SQL QUERY
 		    console.log(query);
 		    connection.query(query,function(err, result) {
 	    	if (err)

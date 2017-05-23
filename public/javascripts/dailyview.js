@@ -6,7 +6,7 @@
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+     var SCOPES = "https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
 
       var authorizeButton = document.getElementById('authorize-button');
       var signoutButton = document.getElementById('signout-button');
@@ -84,6 +84,7 @@
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           authorizeButton.onclick = handleAuthClick;
           signoutButton.onclick = handleSignoutClick;
+          listUpcomingEvents();
         });
       }
 
@@ -95,7 +96,7 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          listUpcomingEvents();
+          
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
@@ -134,6 +135,7 @@
         }).then(function(response) {
           allEvents = response.result.items;
           var date = start.customFormat("#YYYY#-#MM#-#DD#");
+
           xmlhttp.open("GET", "http://localhost:3000/get_journal_day/" + date, true);
           console.log(date);
           xmlhttp.send();
@@ -162,7 +164,7 @@
               clickFunc = function(_event){
                                             return function(){
                                               localStorage["eventName"] = _event.summary;
-                                              localStorage["dateTime"] = new Date(Date.parse(_event.start.dateTime)).toDateString();
+                                              localStorage["dateTime"] = Date.parse(_event.start.dateTime);
                                               localStorage["id"] = _event.id;
                                               url = 'http://' + window.location.host + '/journal_entry.html'
                                               document.location.href = url;
@@ -172,11 +174,15 @@
 
               eventName.innerHTML = event.summary;
               time.innerHTML = timeVal;
-              if(entries[dateVal])
-              {
-                if(entries[dateVal][event.id])
+
+              
+
+              for (var x = entries.length - 1; x >= 0; x--) {
+                console.log(entries[x].eventID,event.id)
+                if(entries[x].eventID == event.id)
                 {
-                  journalEntry.innerHTML = entries[dateVal][event.id].content;
+
+                  journalEntry.innerHTML = entries[x].content;
                 }
               }
             }
@@ -212,7 +218,7 @@
 
       xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
-              journal = this.responseText;
+              journal = JSON.parse(this.responseText);
               console.log(journal);
               listEntries(allEvents,journal);
           }
