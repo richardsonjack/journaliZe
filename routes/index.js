@@ -68,7 +68,7 @@ router.post('/submitEntry',function(req, res, next){
 		    id = data.eventID;
 		    time = data.time;
 
-		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES ('2016-08-22','this title','some content','56','12:55:00') "; // <-- THIS IS OUR SQL QUERY
+		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES (" + date + "," + title + "," + content + "," +id+ ","+time+") "; // <-- THIS IS OUR SQL QUERY
 		    console.log(query);
 		    connection.query(query,function(err, result) {
 	    	if (err)
@@ -141,6 +141,7 @@ verifyToken = function(token){
 			      	users.push(user);
 			     	console.log(user.name+" created and logged in.");
 			    }	
+});
 }
 
 
