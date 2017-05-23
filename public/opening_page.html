@@ -6,11 +6,16 @@
 			<title>JournaliZe</title>
 			<link href="stylesheets/main.css" rel="stylesheet" type="text/css"/>
       <script src="javascripts/openingPage.js"></script>
+      <meta name="google-signin-scope" content="profile email">
+      <meta name="google-signin-client_id" content="738855749966-2u3bkpbodlpneirfrqt853h1mtrv1trr.apps.googleusercontent.com">
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 		</head>
 
 
 		<body>
       <h1>Why choose JournaliZe?</h1>
+
       
       <ul class="accordion">
         <li class="accordion-used">
@@ -36,8 +41,13 @@
       </ul>
       <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
       <script src="javascripts/index.js"></script>
-      <h1>Getting Started!</h1>
-      <button class="button" value="signin.html" onclick="navigate(this)">Sign In</button>
-      <button class="button" value="account_settings.html" onclick="navigate(this)">Make Account</button>
+      <h1>Your JournaliZe adventure is one click away!</h1>
+      
+      <center><div class="g-signin2" data-onsuccess="onSignIn"></div></center>
+
+      <script src="javascripts/sidenav.js"></script>
+      <script src="javascripts/openingpage.js"></script>
+      <a href="#" onclick="signOut();">Sign out</a>
+
 		</body>
 	</html>
