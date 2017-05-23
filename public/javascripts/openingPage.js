@@ -10,6 +10,8 @@ function navigate(objButton){
 }
 function onSignIn(googleUser) {
 			        // Useful data for your client-side scripts:
+			        var id_token = googleUser.getAuthResponse().id_token;
+			        sendToken(id_token);
 			        var profile = googleUser.getBasicProfile();
 			        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
 			        console.log('Full Name: ' + profile.getName());
@@ -20,9 +22,9 @@ function onSignIn(googleUser) {
 
 			        // The ID token you need to pass to your backend:
 			        var googleUser = gapi.auth2.getAuthInstance().currentUser.get();
-			        var id_token = googleUser.getAuthResponse().id_token;
+			        
 			        console.log("ID Token: " + id_token);
-			        sendToken(id_token);
+			        
 
 };
 function signOut() {
@@ -33,23 +35,27 @@ function signOut() {
         }
 
 function move() {
-			    if(GoogleAuth.isSignedIn.get()){
-			    	url = 'http://' + window.location.host + '/homepage.html'
-           			document.location.href = url;
-			    }    
+			   
+	url = 'http://' + window.location.host + '/homepage.html'
+		document.location.href = url;
+			     
 };
 
 function sendToken(token){
 	
-	xhr.open('POST', 'http://localhost:3000/tokenSend');
+	xhr.open('POST', 'http://localhost:3000/tokenSend',false);
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 	xhr.send('idtoken=' + token);	
+	var x = document.getElementById('move_button');
+	x.style.display = 'block';
 }
 
 
 
-xhr.onload = function() {
-  //console.log('Signed in as: ' + xhr.responseText);
-  move();
+xhr.onreadystatechange = function() {
+  if(this.readyState == 4 && this.status == 200){
+  	
+  }
+  
 };			        
