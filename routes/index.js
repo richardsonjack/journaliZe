@@ -24,9 +24,9 @@ router.get('/get_journal_day/:date',function(req, res, next) {
 	        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
 	        throw err; // Exit with an error
 	    }
-	    var query = "SELECT * FROM journals WHERE DATE = '"+req.params.date+"'"; // <-- THIS IS OUR SQL QUERY
+	    var query = "SELECT * FROM journals WHERE DATE = '?'"; // <-- THIS IS OUR SQL QUERY
 	    console.log(query);
-	    connection.query(query, function(err, rows, fields) { // run query
+	    connection.query(query,[xss(req.params.date)] ,function(err, rows, fields) { // run query
 	        connection.release(); //release connection for more queries
 	        console.log(rows); // print the query to console
 	        res.header("Content-Type",'application/json');
@@ -45,7 +45,7 @@ router.get('/get_journal_event.json/:id',function(req, res, next) {
 		        throw err; // Exit with an error
 		    }
 		    var query = "SELECT * FROM journals WHERE eventID = ?"; // <-- THIS IS OUR SQL QUERY
-		    connection.query(query, [req.params.id], function(err, rows, fields) { // run query
+		    connection.query(query, [xss(req.params.id)], function(err, rows, fields) { // run query
 		        connection.release(); //release connection for more queries
 		        console.log(rows); // print the query to console
 		        res.json(rows); // send query response as JSON
@@ -63,15 +63,15 @@ router.post('/submitEntry',function(req, res, next){
 		    }
 
 		    var data = req.body;
-		    title = data.title;
-		    date = data.date;
-		    content = data.content;
-		    id = data.eventID;
-		    time = data.time;
+		    title = xss(data.title);
+		    date = xss(data.date);
+		    content = xss(data.content);
+		    id = xss(data.eventID);
+		    time = xss(data.time);
 
-		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES ('" + date + "','" + title + "','" + content + "','" +id+ "','"+time+"') "; // <-- THIS IS OUR SQL QUERY
+		    var query = "REPLACE INTO journals (owned_by,date,title,content,eventID,time) VALUES ('1',?','?','?','?','?') "; // <-- THIS IS OUR SQL QUERY
 		    console.log(query);
-		    connection.query(query,function(err, result) {
+		    connection.query(query,[date,title,content,id,time],function(err, result) {
 	    	if (err)
 			{connection.release(); throw err;}
 			else

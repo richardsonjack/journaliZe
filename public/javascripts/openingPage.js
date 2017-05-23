@@ -1,5 +1,5 @@
 var CLIENT_ID = '698609138587-inrvscb6seit9957dso0dr3rdmaf9ggv.apps.googleusercontent.com';
-
+var xhr = new XMLHttpRequest();
 function navigate(objButton){
 
 	page = objButton.value;
@@ -40,7 +40,7 @@ function move() {
 };
 
 function sendToken(token){
-	var xhr = new XMLHttpRequest();
+	
 	xhr.open('POST', 'http://localhost:3000/tokenSend');
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
