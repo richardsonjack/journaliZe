@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
   	res.sendFile('/opening_page.html', {root: rootPath});
 });
 
-router.get('/get_journal_day.json/:date',function(req, res, next) {
+router.get('/get_journal_day/:date',function(req, res, next) {
   
 
 	req.pool.getConnection( function(err,connection) { //Connect to the database
@@ -40,7 +40,7 @@ router.get('/get_journal_event.json/:id',function(req, res, next) {
 		        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
 		        throw err; // Exit with an error
 		    }
-		    var query = "SHOW * FROM journals WHERE eventID = ?"; // <-- THIS IS OUR SQL QUERY
+		    var query = "SELECT * FROM journals WHERE eventID = ?"; // <-- THIS IS OUR SQL QUERY
 		    connection.query(query, [req.params.id], function(err, rows, fields) { // run query
 		        connection.release(); //release connection for more queries
 		        console.log(rows); // print the query to console
@@ -50,8 +50,29 @@ router.get('/get_journal_event.json/:id',function(req, res, next) {
 
 	});
 
-router.post('/journal.json',function(req, res, next){
-	journalServer = req.body;
+router.post('/submitEntry',function(req, res, next){
+
+	req.pool.getConnection( function(err,connection) { //Connect to the database
+		    if (err) { // If there's a problem connecting
+		        res.json({}); // Reply with empty JSON (or whatever you want to reply with)
+		        throw err; // Exit with an error
+		    }
+
+		    var data = req.body;
+		    title = data.title;
+		    date = data.date;
+		    content = data.content;
+		    id = data.eventID;
+		    time = data.time;
+
+		    var query = "REPLACE INTO journals (date,title,content,eventID,time) VALUES (" + data + "," + title + "," + content + ","+id+","+time+") "; // <-- THIS IS OUR SQL QUERY
+		    connection.query(query, function(err, rows, fields) { // run query
+		        connection.release(); //release connection for more queries
+		 		console.log("added")
+		    });
+		});
+
+
 	res.end();
 });
 

@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#calendar').fullCalendar({
         eventClick: function(calEvent) {
 
-        	localStorage["dateTime"] = new Date(Date.parse(calEvent.start)).toDateString();
+        	localStorage["dateTime"] = Date.parse(calEvent.start);
         	localStorage["eventName"] = calEvent.title;
             localStorage["id"] = calEvent.id;
             console.log(calEvent.id);

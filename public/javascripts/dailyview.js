@@ -12,7 +12,7 @@
       var signoutButton = document.getElementById('signout-button');
       var today
       if(typeof localStorage["todayDate"] !='undefined'){
-          today = localStorage["todayDate"];
+          today = new Date(localStorage["todayDate"]).toDateString();
           localStorage.removeItem("todayDate");
           var start = new Date(Date.parse(today));
           var end = new Date(Date.parse(today));
@@ -22,8 +22,6 @@
           var end = new Date();
       }
 
-
-      
       start.setHours(0,0,0,0);
 
       
@@ -135,7 +133,9 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           allEvents = response.result.items;
-          xmlhttp.open("GET", "http://localhost:3000/get_journal.json", true);
+          var date = start.customFormat("#YYYY#-#MM#-#DD#");
+          xmlhttp.open("GET", "http://localhost:3000/get_journal_day/" + date, true);
+          console.log(date);
           xmlhttp.send();
           
         });
@@ -212,7 +212,7 @@
 
       xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
-              journal = JSON.parse(this.responseText);
+              journal = this.responseText;
               console.log(journal);
               listEntries(allEvents,journal);
           }
@@ -222,7 +222,7 @@
 
 
        function goToMakeEntry() {
-            localStorage["dateTime"] = start.toDateString();
+            localStorage["dateTime"] = Date.parse(start);
             localStorage["id"] = Math.random();
             url = 'http://' + window.location.host + '/journal_entry.html'
             document.location.href = url;
