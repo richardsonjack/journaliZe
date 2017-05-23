@@ -1,3 +1,5 @@
+var CLIENT_ID = '698609138587-inrvscb6seit9957dso0dr3rdmaf9ggv.apps.googleusercontent.com';
+
 function navigate(objButton){
 
 	page = objButton.value;
@@ -17,6 +19,7 @@ function onSignIn(googleUser) {
 			        console.log("Email: " + profile.getEmail());
 
 			        // The ID token you need to pass to your backend:
+			        var googleUser = gapi.auth2.getAuthInstance().currentUser.get();
 			        var id_token = googleUser.getAuthResponse().id_token;
 			        console.log("ID Token: " + id_token);
 			        sendToken(id_token);

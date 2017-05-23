@@ -56,10 +56,13 @@ submitEntry = function(){
 xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
           	journal = JSON.parse(this.responseText);
-          	if(journal)
+          	console.log(journal);
+          	if(journal[0])
           	{
-          		if(journal.content){
-					nicEditors.findEditor('text_editor').setContent(journal.content)
+          		console.log("test");
+          		if(journal[0].content){
+          			console.log("test");
+					nicEditors.findEditor('text_editor').setContent(journal[0].content)
 				}
           	}
 
