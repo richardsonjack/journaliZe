@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.23-MariaDB, for osx10.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: journaliZe
+-- Host: localhost    Database: journaliZe
 -- ------------------------------------------------------
 -- Server version	10.1.23-MariaDB
 
@@ -31,12 +31,14 @@ DROP TABLE IF EXISTS `journals`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `journals` (
-  `id` varchar(26) NOT NULL DEFAULT '',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `owned_by` int(11) unsigned DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `title` varchar(64) DEFAULT '',
   `content` text,
-  PRIMARY KEY (`id`)
+  `eventID` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `eventID` (`eventID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,8 +62,10 @@ CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `firstName` varchar(20) DEFAULT NULL,
   `lastName` varchar(30) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `googleID` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +74,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Jack','Richardson',NULL,NULL),(2,'Clara','Chu',NULL,NULL),(3,'Javier','Vogt',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -82,4 +87,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-22 17:25:50
+-- Dump completed on 2017-05-23 14:27:20
