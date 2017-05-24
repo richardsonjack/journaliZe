@@ -275,3 +275,10 @@ h2.background {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
+
+.buttonsCentre{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}

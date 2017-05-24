@@ -42,15 +42,15 @@
       <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
       <script src="javascripts/index.js"></script>
       <h1>Your JournaliZe adventure is one click away!</h1>
-
-      <center>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <button class="button" id="move_button" onclick="move()" display="none"> Click to Enter</button>
-      </center>
+      <center> <div class="g-signin2" data-onsuccess="onSignIn"></div></center>
+      <div class = "buttonsCentre">
+        <button class="button" id="move_button" onclick="move()" > Click to Enter</button>
+      
 
       <script src="javascripts/sidenav.js"></script>
       <script src="javascripts/openingpage.js"></script>
-      <a href="#" onclick="signOut();">Sign out</a>
+      <button class="button" id="signout_button" onclick="signOut()" disabled> Sign Out</button>
+      </div>
 
 		</body>
 	</html>

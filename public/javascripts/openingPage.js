@@ -48,7 +48,7 @@ function sendToken(token){
 
 	xhr.send('idtoken=' + token);	
 	var x = document.getElementById('move_button');
-	x.style.display = 'block';
+	x.style.disabled = 'false';
 }
 
 
