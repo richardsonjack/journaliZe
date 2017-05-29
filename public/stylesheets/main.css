@@ -1,5 +1,7 @@
+/* install font */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Condensed');
 
+/* set all text to same style*/
 h1,h2,h3,h4,h5,h6{
     font-family: 'Ubuntu Condensed', sans-serif;
     text-align: center;
@@ -28,6 +30,7 @@ body {
     line-height: 1.5;
 }
 
+/* header buttons*/
 #settings{
     position: absolute;
     right:70px;
@@ -39,6 +42,7 @@ body {
     margin: 0px 20px;
 }
 
+/* header and footer*/
 header,footer{
     background-color: #ffffff;
     width: 100%;
@@ -56,6 +60,8 @@ textarea{
     text-align: left;
     margin:auto;
 }
+
+/* button style and effects*/
 .button{
     background-color: #c5402f; /* Green */
     border: none;
@@ -72,6 +78,8 @@ textarea{
     background-color: #b32e0d; /* Green */
     color: white;
 }
+
+/* data entry boxes*/
 #form_box{
     width: 250px;
     right:0;
@@ -84,6 +92,7 @@ textarea{
     width: 1000px;
 }
 
+/* container for elements */
 .container{
     padding-bottom: 30px;
     margin: 0 auto;
@@ -101,11 +110,13 @@ textarea{
     width: 85%
 }
 
+
 .home{
     position: relative;
     text-align: center;
-
 }
+
+/* table style */
 table {
     width: 100%;
     border-collapse: separate;
@@ -133,6 +144,7 @@ tr.not_header:hover {
     border-radius: 25px;
 } /* used for large sections of text/images */
 
+/* special text */
 h2.rounded{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -152,6 +164,7 @@ form{
     left:0;
 }
 
+/* navbar settings */
 .horz_nav_bar {
     list-style-type: none;
     margin: 0;
@@ -221,6 +234,8 @@ h2.background {
   .sidenav a {font-size: 18px;}
 }
 
+
+/* google authentication */
 .logout {
     padding-top: 12px;
 }

@@ -1,5 +1,7 @@
 var CLIENT_ID = '698609138587-inrvscb6seit9957dso0dr3rdmaf9ggv.apps.googleusercontent.com';
 var xhr = new XMLHttpRequest();
+
+//navigate to page function
 function navigate(objButton){
 
 	page = objButton.value;
@@ -8,6 +10,7 @@ function navigate(objButton){
     document.location.href = url;
 
 }
+//retrieve user info on signin
 function onSignIn(googleUser) {
 			        // Useful data for your client-side scripts:
 			        var id_token = googleUser.getAuthResponse().id_token;
@@ -27,20 +30,21 @@ function onSignIn(googleUser) {
 			        
 
 };
+//signout function
 function signOut() {
           var auth2 = gapi.auth2.getAuthInstance();
           auth2.signOut().then(function () {
             console.log('User signed out.');
           });
         }
-
+//move to next page
 function move() {
 			   
 	url = 'http://' + window.location.host + '/homepage.html'
 		document.location.href = url;
 			     
 };
-
+//send token to be authenticated
 function sendToken(token){
 	
 	xhr.open('POST', 'http://localhost:3000/tokenSend',false);
@@ -51,11 +55,4 @@ function sendToken(token){
 	x.style.disabled = 'false';
 }
 
-
-
-xhr.onreadystatechange = function() {
-  if(this.readyState == 4 && this.status == 200){
-  	
-  }
-  
-};			        
+			        
