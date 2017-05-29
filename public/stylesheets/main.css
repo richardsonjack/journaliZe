@@ -45,7 +45,7 @@ header,footer{
 }
 
 footer{
-    position: relative;
+    position: fixed;
     bottom:0;
     margin-top: 40px;
 }
@@ -94,6 +94,11 @@ textarea{
     border-radius: 25px;
     width:100%;
     text-align: center;
+}
+
+.infocontainer{
+  padding-top: 7%;
+  text-align: center;
 }
 
 #daily_view_container{

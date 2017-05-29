@@ -24,17 +24,11 @@
 			<div id = "main">
 				<header>
 					<a href="homepage.html"><img class ="icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
-          			<a href="#" onclick="signOut();"><img class="logout" id="logoff" src="images/logout.png" alt="Logout" width="45" height="45"></a>
-          
-					
+          			<a href="#" onclick="signOut();"><img class="logout" id="logoff" src="images/logout.png" alt="Logout" width="45" height="45"></a>		
 				</header>
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
-			</div>
-
-			<div id="journal_entry_box" class="container">
-
+				<div id="journal_entry_box" class="container">
 				<h2 class="rounded background">New Entry</h2>
-
 				<form id="entry_meta_data">
 					Title: 
 					<input type="text" name="title" id = "eventTitle">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -42,10 +36,6 @@
 
 					<input type="text" name="date" id="dateField"><br><br>
 				</form>
-
-				
-
-
 				<!--texteditor--> 
 				<div class="container">
 					<textarea name="text_editor" cols="40" id="text_editor">
@@ -53,25 +43,24 @@
 				</div>
 
 				<button class="button" onclick="submitEntry()">Journal</button>
-
 			</div>
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  				<a href="homepage.html">Home</a>
  				<a href="journal_entry.html">Journal Entry</a>
  				<a href="dailyView.html">Daily View</a>
+ 				<a href="calendar_view.html">Calendar View</a>
 			</div>
-
-			<script src="javascripts/sidenav.js"></script>
-
-			<footer>
+			<!--footer>
 				<nav>
 					<ul class="horz_nav_bar">
 						<li class = "horz_nav_bar_item"><a href="about.html" class="horz_nav_bar_link">About</a></li>
 						<li class = "horz_nav_bar_item"><a href="support.html" class="horz_nav_bar_link">Support</a></li>
 						<li class = "horz_nav_bar_item"><a href="contact_us.html" class="horz_nav_bar_link">Contact Us</a></li>
-					</ul>
-					
+					</ul>	
 				</nav>
-			</footer>
+			</footer-->
+			</div>
+			<script src="javascripts/sidenav.js"></script>
+
 		</body>
