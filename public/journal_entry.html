@@ -9,7 +9,7 @@
 			<link href="stylesheets/main.css" rel="stylesheet" type="text/css" />
 			<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
   			<script type="text/javascript" src="javascripts/nicEdit.js"></script>
-
+  			<!-- declare editor-->
   			<script type="text/javascript">
 			//<![CDATA[
         	bkLib.onDomLoaded(function() { 
@@ -22,6 +22,7 @@
 
 		<body>
 			<div id = "main">
+			<!-- header and buttons -->
 				<header>
 					<a href="homepage.html"><img class ="icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
           			<a href="#" onclick="signOut();"><img class="logout" id="logoff" src="images/logout.png" alt="Logout" width="45" height="45"></a>
@@ -31,6 +32,7 @@
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
 			</div>
 
+			<!-- journal entry elements -->
 			<div id="journal_entry_box" class="container">
 
 				<h2 class="rounded background">New Entry</h2>
@@ -55,6 +57,7 @@
 				<button class="button" onclick="submitEntry()">Journal</button>
 
 			</div>
+			<!-- side nav bar -->
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  				<a href="homepage.html">Home</a>
