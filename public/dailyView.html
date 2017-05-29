@@ -11,20 +11,28 @@
 		<body>
 
 			<div id = "main">
+			<!-- header and buttons -->
 				<header>
 					<a href="homepage.html"><img class ="icon" src="images/logo.png" alt="Logo" width="97" height="70"></a>
           			<a href="#" onclick="signOut();"><img class="logout" id="logoff" src="images/logout.png" alt="Logout" width="45" height="45"></a>
           
 				</header>
 				<span style="font-size:30px; cursor:pointer;margin-left:5px" onclick="openNav()"> &#9776; </span>
+<<<<<<< HEAD
+=======
+			</div>
+
+			<!-- daily view contents-->
+>>>>>>> origin/master
 			<div class="container" id="daily_view_container">
 
 				<h2 id="dailyheader" class= "rounded background">Monday, 22nd of April</h2>
 				
+				<!-- buttons -->
 				<button id="authorize-button" style="display: none;">Authorize</button>
    				<button id="signout-button" style="display: none;">Sign Out</button>
 
-
+   				<!-- empty table -->
 				<table id="daily_events">
 					<tr id = tableHeader>
 						<th>
@@ -38,7 +46,7 @@
 						</th>
 					</tr>
 				</table>
-
+				<!-- nav buttons -->
 				<button class="button" id="left_button" onclick="lastDay()">&larr;</button>
 				<button class="button" id="new_entry_button" onclick="goToMakeEntry()">New Entry</button>
 				<button class="button" id="right_button" onclick="nextDay()">&rarr;</button>
@@ -48,6 +56,10 @@
 		      	onload="this.onload=function(){};handleClientLoad();">
 		    </script>
 
+<<<<<<< HEAD
+=======
+		    <!-- side nav -->
+>>>>>>> origin/master
 			<div id="mySidenav" class="sidenav">
  				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
  				<a href="homepage.html">Home</a>

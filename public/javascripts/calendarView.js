@@ -4,11 +4,12 @@ $(document).ready(function() {
 
     $('#calendar').fullCalendar({
         eventClick: function(calEvent) {
-
+            //store data for page change
         	localStorage["dateTime"] = Date.parse(calEvent.start);
         	localStorage["eventName"] = calEvent.title;
             localStorage["id"] = calEvent.id;
             console.log(calEvent.id);
+            //follow link
             url = 'http://' + window.location.host + '/journal_entry.html'
             document.location.href = url;
 		return false;

@@ -1,3 +1,4 @@
+//declare vars
 var entryID;
 var date;
 var title;
@@ -5,7 +6,7 @@ var xmlhttp = new XMLHttpRequest();
 var sendhttp = new XMLHttpRequest();
 
 
-
+//when window loads, sort through entry data place in elements
 window.onload = function () {
 	if(typeof localStorage["dateTime"] !='undefined'){
 		console.log(localStorage["dateTime"]);
@@ -32,7 +33,7 @@ window.onload = function () {
 	
 }
 
-
+// retrieve data from elements and send to database
 submitEntry = function(){
 		
 	    title = document.getElementById("eventTitle").value;
@@ -52,7 +53,7 @@ submitEntry = function(){
 }
 
 
-
+//parse data from database and place in elements
 xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
           	journal = JSON.parse(this.responseText);
@@ -74,7 +75,7 @@ xmlhttp.onreadystatechange = function() {
           
  };
 }
-
+//when data sent to database, proceed to next page
 sendhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
 

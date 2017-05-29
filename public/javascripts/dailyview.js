@@ -6,11 +6,14 @@
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-     var SCOPES = "https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
-
+      var SCOPES = "https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+      //declare vars and get ids
       var authorizeButton = document.getElementById('authorize-button');
       var signoutButton = document.getElementById('signout-button');
-      var today
+      var today;
+
+
+      //manage date
       if(typeof localStorage["todayDate"] !='undefined'){
           today = new Date(localStorage["todayDate"]).toDateString();
           localStorage.removeItem("todayDate");
@@ -21,23 +24,20 @@
           var start = new Date();
           var end = new Date();
       }
-
       start.setHours(0,0,0,0);
-
-      
       end.setHours(23,59,59,999);
-
       today = start;
 
+      //retrieve elements
       var heading = document.getElementById("dailyheader");
       var table = document.getElementById("daily_events");
-
       heading.innerHTML = today.toDateString();
       var allEvents;
 
+      //create AJAX object
       var xmlhttp = new XMLHttpRequest();
 
-
+      //Define date formatting function
       Date.prototype.customFormat = function(formatString){
         var YYYY,YY,MMMM,MMM,MM,M,DDDD,DDD,DD,D,hhhh,hhh,hh,h,mm,m,ss,s,ampm,AMPM,dMod,th;
         YY = ((YYYY=this.getFullYear())+"").slice(-2);
@@ -143,10 +143,13 @@
         });
       }
 
+
+      //list the journal entriels, creating table cells and populating from database and calendar API
       listEntries = function(events,entries)
       {
         if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
+              //get event and details
               var event = events[i];
               when = event.start.dateTime;
               when = Date.parse(when);
@@ -155,12 +158,12 @@
               if (!timeVal) {
                 when = event.start.dateTime;
                 when = Date.parse(when);
-               // when = new Date(when).;
               }
               row = table.insertRow(i+1);
               eventName = row.insertCell(0);
               time = row.insertCell(1);
               journalEntry = row.insertCell(2);
+              //cell click function
               clickFunc = function(_event){
                                             return function(){
                                               localStorage["eventName"] = _event.summary;
@@ -176,9 +179,8 @@
               time.innerHTML = timeVal;
 
               
-
+              //populate table with db entries
               for (var x = entries.length - 1; x >= 0; x--) {
-                console.log(entries[x].eventID,event.id)
                 if(entries[x].eventID == event.id)
                 {
 
@@ -188,12 +190,12 @@
             }
           }
       }
-
+      //clear table and reset to default
       clearTable = function()
       {
         table.innerHTML = "<tr id = tableHeader><th>Event</th><th>Time</th><th>Journal Entry</th></tr>"
       }
-
+      //display table for next day
       nextDay = function()
       {
         clearTable();
@@ -203,7 +205,7 @@
         today = start;
         heading.innerHTML = today.toDateString();
       }
-
+      //display table for previous day
       lastDay = function()
       {
         clearTable();
@@ -215,7 +217,7 @@
       }
 
       
-
+      //retrieve entries for database and parse
       xmlhttp.onreadystatechange = function() {
           if(this.readyState == 4 && this.status == 200){
               journal = JSON.parse(this.responseText);
@@ -226,7 +228,7 @@
       
 
 
-
+        //go to make entry page
        function goToMakeEntry() {
             localStorage["dateTime"] = Date.parse(start);
             localStorage["id"] = Math.random();
